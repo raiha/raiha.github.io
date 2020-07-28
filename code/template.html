@@ -1,0 +1,77 @@
+<html lang="zh">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>最佳软件</title>
+  <link rel="stylesheet" href="../css/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="banner"></div>
+<div id="app" style="width:800px; margin: 0 auto">
+
+  <template v-for="data in list">
+    <div class="type">{{data.type}}</div>
+    <template v-for="soft in data.software">
+      <div class="panel">
+        <div :class="'icon icon-'+soft.icon"></div>
+        <div style="float: left">
+          <div class="name">
+            {{soft.name}}
+            <template v-for="tag in soft.tags">
+              <span :class="'tag tag-'+tag">{{tagNames[tag]}}</span>
+            </template>
+          </div>
+          <ol class="feature">
+            <li v-for="f in soft.feature">{{f.text}}</li>
+          </ol>
+        </div>
+        <div class="download"><span>{{soft.size}} | </span><a :href="soft.download" target="_blank">官网下载</a></div>
+        <div style="clear:both"></div>
+      </div>
+    </template>
+  </template>
+
+</div>
+
+<script>
+let app = new Vue({
+  el: '#app',
+  data: {
+    tagNames:{free: "免费", partFree: "部分免费", portable: "绿色", mp: "多平台"},
+    list:[
+      {type: "下载", software:[
+        {name: "Free Download Manager", size: "30.8 MB", icon: "fdm", tags:["free", "mp"], download: "https://www.freedownloadmanager.org/zh/download.htm",
+          feature:[
+            {text: "支持HTTP/HTTPS/FTP/BT下载"}
+          ]
+        }
+      ]},
+      {type: "数据恢复", software:[
+        {name: "Recuva", size: "5.3 MB", icon: "recuva", tags:["partFree"], download: "https://www.ccleaner.com/recuva/download"}
+      ]},
+      {type: "文件搜索", software:[
+        {name: "Everything", size: "1.4 MB", icon: "everything",
+          feature:[
+            {text: "基于文件名全局搜索文件夹和文件（限NTFS）"},
+            {text: "速度飞快"}
+          ],
+          tags:["free","portable"],
+          download: "https://www.voidtools.com/zh-cn/downloads/"}
+      ]},
+      {type: "文件整理", software:[
+        {name: "SpaceSniffer", size: "1.6 MB", icon: "SpaceSniffer", download: "http://www.uderzo.it/main_products/space_sniffer/download.html", tags:["free","portable"],
+          feature:[
+            {text: "分析文件夹大小，图形化展示，清理磁盘空间时很好用"}
+          ]
+        }
+      ]},
+    ]
+  }
+});
+</script>
+</body>
+</html>
+
+<!--
+VLC Qbt下载 虚拟机 视频剪辑 gif截图 文本编辑
+-->
